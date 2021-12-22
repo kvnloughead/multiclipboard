@@ -1,4 +1,4 @@
-Walking through the multiclipboard project [here](https://automatetheboringstuff.com/2e/appendixb/). 
+Walking through the multiclipboard project [here](https://automatetheboringstuff.com/2e/chapter6/) with updates in chapter 9. 
 
 
 
