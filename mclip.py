@@ -1,21 +1,22 @@
 #! /usr/bin/python3
 
-import sys
+# mcb.py - Saves and loads pieces of text to the clipboard
+
+# Usage: py.exe mc.py save <keyword> - Saves clipboard to keyword
+#        py.exe mc.py <keyword> - Loads keyword to clipboard
+#        py.exe mc.py list - Loads all keywords to clipboard
+
+import shelve
 import pyperclip
+import sys
 
-# dictionary of phrases
-store = {'agree': """Yes, I agree. That sounds fine to me.""",
-         'busy': """Sorry, can we do this later this week or next week?""",
-         'upsell': """Would you consider making this a monthly donation?"""}
+shelf = shelve.open('mc')
 
-
-if len(sys.argv) < 2:
-    print('Usage: python mclip.py <key>')
-    sys.exit()
-
-key = sys.argv[1]
-if key in store:
-    pyperclip.copy(store[key])
-    print('Text for ' + key + ' copied to clipboard.')
-else:
-    print('No such key')
+if len(sys.argv) == 3 and sys.argv[1].lower() == 'save':
+    shelf[sys.argv[2]] = pyperclip.paste()
+elif len(sys.argv) == 2:
+    if sys.argv[1].lower() == 'list':
+        pyperclip.copy(str(list(shelf.keys())))
+    else:
+        pyperclip.copy(shelf[sys.argv[1]])
+shelf.close()
