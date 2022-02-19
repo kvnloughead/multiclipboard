@@ -8,8 +8,6 @@
 #         mc list_ - Loads all keywords to clipboard
 
 import argparse
-import shelve
-import pyperclip
 import sys
 
 from save import save
